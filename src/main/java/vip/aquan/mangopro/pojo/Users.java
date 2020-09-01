@@ -12,6 +12,15 @@ public class Users {
     private String userId;
     private String name;
     private Integer age;
+    private double[] loc;
+
+    public void setLoc(double[] loc) {
+        this.loc = loc;
+    }
+
+    public double[] getLoc() {
+        return loc;
+    }
 
     public String getUserId() {
         return userId;

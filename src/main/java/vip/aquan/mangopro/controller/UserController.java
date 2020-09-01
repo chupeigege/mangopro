@@ -29,6 +29,43 @@ public class UserController {
     public String hello(){
         return "hello";
     }
+    /**
+     * mongo操作：
+     *
+     * db.places.insert(
+     *    {
+     *       location : { type: "Point", coordinates: [114.116812,22.544186] },
+     *       name: "老街",
+     *       category : "LJ"
+     *    }
+     * )
+     *
+     * db.places.insert(
+     *    {
+     *       location : { type: "Point", coordinates: [ 116.397128, 39.916527 ] },
+     *       name: "BEIJING1",
+     *       category : "BJ1"
+     *    }
+     * )
+     *
+     * db.getCollection('places').find({})
+     *
+     * db.places.createIndex( {location : "2dsphere"} )
+     *
+     * db.places.findOne()
+     *
+     * db.places.find({
+     *   location:{
+     *     $near: {
+     *        $geometry: {
+     *           type: "Point" ,
+     *           coordinates: [114.116812,22.544186 ]
+     *        },
+     *        $maxDistance: 2000
+     *     }
+     *   }
+     * })
+     */
 
     /**
      * 新增
@@ -40,6 +77,7 @@ public class UserController {
         user.setUserId("1002");
         user.setName("eric");
         user.setAge(18);
+//        user.setLoc(new double[]{112.1214,114.1595}); 要改成point类型
         mongoTemplate.insert(user);
         return new ResultObject(200);
     }
