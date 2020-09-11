@@ -19,7 +19,7 @@ import java.util.List;
  * @date: 2020/9/1 01:38
  * @Description:
  */
-@RequestMapping("/mongo")
+@RequestMapping("/user")
 @RestController
 public class UserController {
     @Autowired
@@ -29,6 +29,43 @@ public class UserController {
     public String hello(){
         return "hello";
     }
+
+    /*
+    返回距离的mongo语句：
+    db.supplier.aggregate([
+   {
+     $geoNear: {
+        near: { type: "Point", coordinates: [ 114.116812, 22.544186 ] },
+        distanceField: "dist",
+        maxDistance: 20000,
+        query: { categoryId: "2" },
+        //includeLocs: "location",
+        //spherical: true
+     }
+   },
+   { $limit: 4}
+])
+     */
+
+    /*
+    返回距离的mongo的记录数语句：
+    db.supplier.aggregate([
+   {
+     $geoNear: {
+        near: { type: "Point", coordinates: [ 114.116812, 22.544186 ] },
+        distanceField: "dist",
+        maxDistance: 20000,
+        query: { categoryId: "2" },
+        //includeLocs: "location",
+        //spherical: true
+     }
+   },
+   { $limit: 4}
+   {
+      $count: "count"
+    }
+])
+     */
     /**
      *
      * 教程：https://blog.csdn.net/FrankWong1989/article/details/108178638
@@ -69,6 +106,9 @@ public class UserController {
      *   }
      * })
      */
+    /**
+
+
 
     /**
      * 新增
